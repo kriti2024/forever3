@@ -1,0 +1,118 @@
+:root {
+    --bg: #f9f5f2;
+    --sidebar: #e8ded3;
+    --card: #fffaf7;
+    --text: #3e3e3e;
+    --accent: #d6bfa9;
+  }
+ 
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+  }
+ 
+  .container {
+    display: flex;
+    height: 100vh;
+  }
+ 
+  .sidebar {
+    width: 220px;
+    background-color: var(--sidebar);
+    padding: 1.5rem;
+  }
+ 
+  .logo-text {
+    display: block;
+    padding: 6px 12px;
+    color: #5e2d0e; /* Slightly lighter */
+    text-decoration: none;
+    font-weight: bold;
+    font-family: 'Playfair Display', serif;
+    letter-spacing: 1px;
+    font-size: 18px;
+  }
+ 
+  .sidebar nav ul {
+    list-style: none;
+    padding: 0;
+  }
+ 
+  .sidebar nav ul li {
+    margin: 1.2rem 0;
+  }
+ 
+  .sidebar nav ul li a {
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 500;
+  }
+ 
+  .main-content {
+    flex: 1;
+    padding: 2rem;
+    background-color: var(--bg);
+    overflow-y: auto;
+  }
+ 
+  .top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+  }
+ 
+  .search-bar {
+    padding: 0.5rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    width: 300px;
+    max-width: 100%;
+  }
+ 
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+ 
+  .card {
+    background-color: var(--card);
+    padding: 1rem 1.2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    font-size: 1rem;
+  }
+ 
+  .reports {
+    margin-top: 2rem;
+  }
+ 
+  .reports h2 {
+    margin-bottom: 1rem;
+  }
+ 
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--card);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+ 
+  th, td {
+    padding: 0.8rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid #e0d7cf;
+  }
+ 
+  th {
+    background-color: var(--sidebar);
+    font-weight: 600;
+  }
+ 
+ 

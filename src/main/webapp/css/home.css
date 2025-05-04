@@ -1,0 +1,166 @@
+@charset "UTF-8";
+/* General Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
+}
+ 
+body {
+  background-color: #f6f1eb; /* Light nude brown background */
+  color: #4a3c37; /* Dark brown text */
+  line-height: 1.6;
+}
+ 
+/* Hero Section */
+.hero {
+  background-image: url('../resources/images/system/homemain.jpg');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  position: relative;
+  padding: 0 20px;
+}
+ 
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.25);
+  z-index: 0;
+}
+ 
+.hero-content {
+  position: relative;
+  z-index: 1;
+  animation: slideFade 1.2s ease-in-out;
+}
+ 
+@keyframes slideFade {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+ 
+.hero h1 {
+  font-size: 48px;
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 15px;
+}
+ 
+.hero p {
+  font-size: 18px;
+  margin-bottom: 25px;
+}
+ 
+/* Section Common */
+.section {
+  padding: 60px 30px;
+  text-align: center;
+}
+ 
+.section.alt {
+  background-color: #f9f3ec; /* Lighter nude brown for alternate sections */
+}
+ 
+.section-title {
+  font-size: 32px;
+  margin-bottom: 30px;
+  font-family: 'Playfair Display', serif;
+  color: #b89f8d;
+}
+ 
+/* Card Grid */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Increased size of grid items */
+  gap: 20px;
+  justify-items: center;
+}
+ 
+/* Category Section Override */
+.section:not(.alt) .card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 280px); /* two fixed-width columns */
+  gap: 20px;                                /* small, consistent gap */
+  justify-content: center;                 /* center the grid in its container */
+  margin: 0 auto;                          /* ensure the whole grid is centered */
+}
+ 
+/* Category Card */
+.card {
+  background: #fff;
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+  width: 280px;
+  height: 350px;
+}
+ 
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 15px;
+}
+ 
+.card:hover {
+  transform: scale(1.05);
+}
+ 
+/* Product Card */
+.product-card {
+  background: #fff;
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+  width: 280px; /* Uniform width */
+  height: 350px; /* Uniform height */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Ensures content is spaced evenly within the card */
+}
+ 
+.product-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+ 
+.product-card h4 {
+  font-size: 16px;
+  color: #4a3c37;
+  margin-bottom: 5px;
+}
+ 
+.product-card p {
+  color: #b89f8d;
+  font-weight: bold;
+  font-size: 16px;
+}
+ 
+.product-card:hover {
+  transform: translateY(-5px);
+}
+ 

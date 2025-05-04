@@ -1,0 +1,172 @@
+@charset "UTF-8";
+/* Reset & base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* Header styles */
+.header {
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 30px 0;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+}
+
+/* Logo */
+.logo a {
+    display: block;
+    padding: 6px 12px;
+    color: #5e2d0e;
+    text-decoration: none;
+    font-weight: bold;
+    font-family: 'Playfair Display', serif;
+    letter-spacing: 1px;
+    font-size: 18px;
+}
+
+/* Navigation Left */
+.main-nav {
+    margin-left: 30px;
+}
+
+.main-nav ul {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+}
+
+.main-nav li a {
+    color: #333;
+    text-decoration: none;
+    padding: 10px 14px;
+    font-weight: 500;
+    font-size: 15px;
+    position: relative;
+    display: inline-block;
+    transition: all 0.3s;
+}
+
+.main-nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    background-color: #5d4037;
+    transition: all 0.3s ease;
+}
+
+.main-nav a:hover::after {
+    width: 80%;
+    left: 10%;
+}
+
+.main-nav a:hover {
+    color: #5d4037;
+}
+
+/* Header Right Section (search + auth + cart + profile) */
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin-left: 50px;
+}
+
+/* Search */
+.search-container {
+    position: relative;
+}
+
+.search-input {
+    padding: 8px 30px 8px 10px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    font-size: 14px;
+    width: 160px;
+}
+
+.search-button {
+    background: none;
+    border: none;
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    padding: 0;
+}
+
+.magnifier-icon {
+    width: 16px;
+    height: 16px;
+    opacity: 0.6;
+}
+
+/* Auth Buttons */
+.auth-buttons {
+    display: flex;
+    gap: 20px;
+}
+
+.btn {
+    padding: 6px 12px;
+    border-radius: 4px;
+    background-color:  #b06c63;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    border: none;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background-color: #5d4037;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Cart */
+.cart-icon-img {
+    width: 22px;
+    height: 22px;
+}
+
+/* Profile */
+.profile-link {
+    display: flex;
+    align-items: center;
+}
+
+.profile-icon-img {
+    width: 22px;
+    height: 22px;
+}
+
+/* Main */
+main {
+    padding: 40px 0;
+}
+
+h1 {
+    margin-bottom: 20px;
+}

@@ -39,8 +39,8 @@ public class RegisterService {
             return false;
         }
  
-        String insertQuery = "INSERT INTO customer (first_name, last_name, user_name, number, email, password, image_url, role) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String insertQuery = "INSERT INTO customer (first_name, last_name, user_name, number, email, password, image_url) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?)";
  
         try (PreparedStatement insertStmt = dbConn.prepareStatement(insertQuery)) {
             // Insert user details

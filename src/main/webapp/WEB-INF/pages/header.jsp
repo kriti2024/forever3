@@ -1,11 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="jakarta.servlet.http.HttpSession" %>
+<%@ page import="jakarta.servlet.http.HttpServletRequest" %>
+
+<%
+    // Get the current session and username if available
+    HttpSession userSession = request.getSession(false);
+    String currentUser = (String) (userSession != null ? userSession.getAttribute("username") : null);
+    pageContext.setAttribute("currentUser", currentUser);
+%>
+
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Beauty Store</title>
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css" />
+  <link rel="stylesheet" type="text/css" href="${contextPath}/css/header.css" />
 </head>
 <body>
   <header class="header">
@@ -13,7 +26,7 @@
       <!-- Left: Logo + Nav -->
       <div class="header-left" style="display: flex; align-items: center;">
         <div class="logo">
-          <a href="/">forever3</a>
+          <a href="${contextPath}/">forever3</a>
         </div>
         <nav class="main-nav">
           <ul>
@@ -32,30 +45,30 @@
         <div class="search-container">
           <input type="text" class="search-input" placeholder="search" />
           <button class="search-button">
-            <img src="${pageContext.request.contextPath}/resources/images/system/search.png" class="magnifier-icon" alt="Search" />
+            <img src="${contextPath}/resources/images/system/search.png" class="magnifier-icon" alt="Search" />
           </button>
         </div>
 
-        <!-- Auth Buttons -->
-        <div class="auth-buttons">
-          <a href="/logout" class="btn">Logout</a>
-        </div>
+		<div class="auth-buttons">
+		  <form action="${contextPath}/logout" method="post" style="display:inline;">
+		    <input type="submit" class="btn" value="Logout" />
+		  </form>
+		</div>
 
         <!-- Cart -->
         <div class="cart">
-          <a href="/cart" class="cart-icon">
-            <img src="${pageContext.request.contextPath}/resources/images/system/cart.png" class="cart-icon-img" alt="Cart" />
+          <a href="${contextPath}/cart" class="cart-icon">
+            <img src="${contextPath}/resources/images/system/cart.png" class="cart-icon-img" alt="Cart" />
           </a>
         </div>
 
         <!-- Profile -->
         <div class="profile">
-          <a href="/profile" class="profile-link">
-            <img src="${pageContext.request.contextPath}/resources/images/system/profile.png" class="profile-icon-img" alt="Profile" />
+          <a href="${contextPath}/profile" class="profile-link">
+            <img src="${contextPath}/resources/images/system/profile.png" class="profile-icon-img" alt="Profile" />
           </a>
         </div>
       </div>
-
     </div>
   </header>
 </body>

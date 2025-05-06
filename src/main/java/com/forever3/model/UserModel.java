@@ -32,6 +32,7 @@ public class UserModel {
 		this.password = password;
 		this.image_url = image_url;
 		this.role = role;
+	
 		
 	}
 
@@ -46,7 +47,7 @@ public class UserModel {
 		this.image_url = image_url;
 		}
 
-	public UserModel(int id, String first_name, String last_name, String email, String number, String role) {
+	public UserModel(int id, String first_name, String last_name, String email, String number) {
 		super();
 		this.id = id;
 		this.first_name = first_name;

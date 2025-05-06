@@ -56,25 +56,30 @@ public class LoginController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
- 
+
+        // Admin login hardcoded check
+        if ("admin".equals(username) && "admin".equals(password)) {
+        	System.out.println("Admin login successful");
+            SessionUtil.setAttribute(req, "username", username);
+            CookieUtil.addCookie(resp, "role", "admin", 5 * 30); // Role: admin
+            req.getRequestDispatcher("/WEB-INF/pages/admin/dashboard.jsp").forward(req,resp);
+            return; // Exit method after admin login
+        }
+
+        // For other users (students/customers)
         UserModel userModel = new UserModel(username, password);
-        System.out.println("Step 1");
         Boolean loginStatus = loginService.loginUser(userModel);
-    	System.out.println("Step last");
-        //Kriti123@
+        System.out.println("Login Status: " + loginStatus);
+
         if (loginStatus != null && loginStatus) {
-              SessionUtil.setAttribute(req, "username", username);
-            if (username.equals("admin")) {
-                CookieUtil.addCookie(resp, "role","admin" ,5 * 30);
-                resp.sendRedirect(req.getContextPath() + "/dashboard"); // Redirect to /home
-            } else {
-                CookieUtil.addCookie(resp, "role", "customer", 5 * 30);
-                resp.sendRedirect(req.getContextPath() + "/home"); // Redirect to /home
-            }
+            SessionUtil.setAttribute(req, "username", username);
+            CookieUtil.addCookie(resp, "role", "customer", 5 * 30); // Role: customer/student
+            resp.sendRedirect(req.getContextPath() + "/home");
         } else {
             handleLoginFailure(req, resp, loginStatus);
         }
     }
+
  
     /**
      * Handles login failures by setting attributes and forwarding to the login

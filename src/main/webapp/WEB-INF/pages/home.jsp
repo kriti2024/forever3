@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -7,15 +6,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Forever3</title>
- 
-  <!-- Link to CSS using contextPath -->
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/home.css" />
+
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/home.css">
  
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Open+Sans&display=swap" rel="stylesheet">
 </head>
-<body>
- 
+<body class="home-page">
+
   <!-- Include Header -->
   <jsp:include page="header.jsp" />
  
@@ -23,9 +21,7 @@
   <section class="hero">
     <div class="hero-content">
       <h1>Glow with Confidence</h1>
-      <p>Pure skincare. Flawless beauty. Forever 3.</p>
- 
- 
+      <p>Pure skincare. Flawless beauty. Forever 3.</p> 
     </div>
   </section>
  

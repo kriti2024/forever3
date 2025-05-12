@@ -88,7 +88,7 @@
 
     <!-- Right-side Registration Image -->
     <div class="image-section">
-      <img src="${pageContext.request.contextPath}/resources/images/system/rg.jpg" alt="Registration Image" />
+      <img src="${pageContext.request.contextPath}/resources/images/system/register.jpg" alt="Registration Image" />
     </div>
   </div>
 </body>

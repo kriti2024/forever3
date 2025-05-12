@@ -17,7 +17,7 @@ import jakarta.servlet.http.HttpServletResponse;
  * LoginController is responsible for handling login requests. It interacts with
  * the LoginService to authenticate users.
  */
-@WebServlet(asyncSupported = true, urlPatterns = { "/login", "/"})
+@WebServlet(asyncSupported = true, urlPatterns = { "/login"})
 public class LoginController extends HttpServlet {
     private static final long serialVersionUID = 1L;
  
@@ -58,10 +58,10 @@ public class LoginController extends HttpServlet {
         String password = req.getParameter("password");
 
         // Admin login hardcoded check
-        if ("admin".equals(username) && "admin".equals(password)) {
+        if ("admin".equals(username) && "@Admin1234".equals(password)) {
         	System.out.println("Admin login successful");
             SessionUtil.setAttribute(req, "username", username);
-            CookieUtil.addCookie(resp, "role", "admin", 5 * 30); // Role: admin
+            CookieUtil.addCookie(resp, "role", "admin", 3 * 50); // Role: admin
             req.getRequestDispatcher("/WEB-INF/pages/admin/dashboard.jsp").forward(req,resp);
             return; // Exit method after admin login
         }
@@ -73,7 +73,7 @@ public class LoginController extends HttpServlet {
 
         if (loginStatus != null && loginStatus) {
             SessionUtil.setAttribute(req, "username", username);
-            CookieUtil.addCookie(resp, "role", "customer", 5 * 30); // Role: customer/student
+            CookieUtil.addCookie(resp, "role", "customer", 3 * 50); // Role: customer
             resp.sendRedirect(req.getContextPath() + "/home");
         } else {
             handleLoginFailure(req, resp, loginStatus);

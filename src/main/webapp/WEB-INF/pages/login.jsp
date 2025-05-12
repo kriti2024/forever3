@@ -33,7 +33,7 @@
     </div>
 
     <div class="image-section">
-      <img src="../resources/images/system/img.png" alt="Skincare Visual" />
+      <img src="${pageContext.request.contextPath}/resources/images/system/loginnewimage.jpg" alt="Skincare Visual" />
     </div>
     <!-- Display error message if available -->
 		<c:if test="${not empty error}">

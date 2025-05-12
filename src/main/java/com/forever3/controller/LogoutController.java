@@ -10,17 +10,23 @@ import java.io.IOException;
 import com.forever3.util.CookieUtil;
 import com.forever3.util.SessionUtil;
 
-/**
- * Servlet implementation class LogoutController
- */
 @WebServlet(asyncSupported = true, urlPatterns = {"/logout"})
 public class LogoutController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		logout(request, response);
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		logout(request, response);
+	}
+
+	private void logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		CookieUtil.deleteCookie(response, "role");
 		SessionUtil.invalidateSession(request);
 		response.sendRedirect(request.getContextPath() + "/login");
 	}
-
 }

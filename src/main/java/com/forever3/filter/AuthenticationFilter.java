@@ -27,7 +27,7 @@ public class AuthenticationFilter implements Filter {
     private static final String MAKEUP = "/makeup";
     private static final String ABOUTUS = "/aboutus";
     private static final String CONTACTUS = "/contactus";
-    private static final String CART = "/cart";
+    private static final String ORDERLIST = "/ordrelist";
     private static final String PROFILE = "/profile";
     private static final String LOGOUT = "/logout";
 
@@ -79,7 +79,8 @@ public class AuthenticationFilter implements Filter {
             if (uri.endsWith(LOGIN) || uri.endsWith(REGISTER) ||
                 uri.endsWith(HOME) || uri.endsWith(ROOT) || 
                 uri.endsWith(SKINCARE) || uri.endsWith(MAKEUP) ||
-                uri.endsWith(ABOUTUS) || uri.endsWith(CONTACTUS)) {
+                uri.endsWith(ABOUTUS) || uri.endsWith(CONTACTUS) || uri.endsWith(ORDERLIST)
+                || uri.endsWith(PROFILE)) {
                 chain.doFilter(request, response);
             } else {
                 res.sendRedirect(req.getContextPath() + LOGIN);  // Redirect to login if not logged in

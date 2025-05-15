@@ -16,7 +16,7 @@ import jakarta.servlet.http.HttpSession;
 * ProfileController is responsible for handling profile-related requests.
 * It interacts with the ProfileService to get and update user profile details.
 */
-@WebServlet(urlPatterns = { "/profile", "/profile/update" })
+@WebServlet(urlPatterns = { "/profile" })
 public class ProfileController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private final ProfileService profileService;

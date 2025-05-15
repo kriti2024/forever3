@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile - Forever3</title>
-    <link rel="stylesheet" href="css/profile.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/profile.css">
 </head>
 <body>
  

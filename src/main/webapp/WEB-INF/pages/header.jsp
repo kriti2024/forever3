@@ -13,7 +13,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Beauty Store</title>
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css" />
+  <link rel="stylesheet" type="text/css" href="${contextPath}/css/header.css" />
 </head>
 <body>
 <header class="header">
@@ -27,16 +27,19 @@
     <!-- Navigation -->
     <nav class="main-nav">
       <ul>
-        <li><a href="${contextPath}/home">Home</a></li>
-        <li><a href="${contextPath}/skincare">SkinCare</a></li>
-        <li><a href="${contextPath}/makeup">MakeUp</a></li>
-        <li><a href="${contextPath}/aboutus">AboutUs</a></li>
-        <li><a href="${contextPath}/contactus">ContactUs</a></li>
+        <li><a href="${pageContext.request.contextPath}/home">Home</a></li>
+        <li><a href="${pageContext.request.contextPath}/skincare">SkinCare</a></li>
+        <li><a href="${pageContext.request.contextPath}/makeup">MakeUp</a></li>
+        <li><a href="${pageContext.request.contextPath}/aboutus">AboutUs</a></li>
+        <c:if test="${not empty currentUser}">
+          <li><a href="${pageContext.request.contextPath}/profile">Profile</a></li>
+        </c:if>
       </ul>
     </nav>
 
     <!-- Right Section -->
     <div class="header-right">
+
       <!-- Search -->
       <div class="search-container">
         <input type="text" class="search-input" placeholder="search" />
@@ -49,33 +52,33 @@
       <div class="auth-button-container">
         <c:choose>
           <c:when test="${not empty currentUser}">
-            <form action="${pageContext.request.contextPath}/logout" method="post">
-              <button type="submit" class="auth-button ">Logout</button>
+            <form action="${contextPath}/logout" method="post">
+              <button type="submit" class="auth-button">Logout</button>
             </form>
           </c:when>
           <c:otherwise>
-            <form action="${pageContext.request.contextPath}/login" method="get">
-              <button type="submit" class="auth-button ">Login</button>
+            <form action="${contextPath}/login" method="get">
+              <button type="submit" class="auth-button">Login</button>
             </form>
           </c:otherwise>
         </c:choose>
       </div>
 
-      <!-- Cart -->
-      <div class="icon-container">
-        <a href="${contextPath}/cart">
-          <img src="${contextPath}/resources/images/system/cart.jpg" class="icon-img" alt="Cart" />
-        </a>
-      </div>
+      <c:if test="${not empty currentUser}">
+        <!-- Cart -->
+        <div class="icon-container">
+          <a href="${contextPath}/cart">
+            <img src="${contextPath}/resources/images/system/cart.jpg" class="icon-img" alt="Cart" />
+          </a>
+        </div>
 
-      <!-- Profile -->
-      <div class="icon-container">
-        <a href="${contextPath}/profile">
-          <img src="${contextPath}/resources/images/system/profile.jpg" class="icon-img" alt="Profile" />
-        </a>
-      </div>
+        <!-- Orderlist -->
+        <div class="icon-container">
+          <a href="${contextPath}/orderlist">Orderlist</a>
+        </div>
+      </c:if>
+
     </div>
-
   </div>
 </header>
 </body>

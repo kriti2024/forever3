@@ -219,7 +219,7 @@ h1 {
 
 .add-to-cart-btn {
   display: inline-block;
-  background-color: #e8c4c4;
+  background-color: #b59f89;
   color: #333;
   border: none;
   padding: 12px 30px;
@@ -230,5 +230,5 @@ h1 {
 }
 
 .add-to-cart-btn:hover {
-  background-color: #d4a6a6;
+  background-color: #a08874;
 }

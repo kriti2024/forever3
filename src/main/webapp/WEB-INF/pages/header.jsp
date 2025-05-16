@@ -67,7 +67,7 @@
       <c:if test="${not empty currentUser}">
         <!-- Cart -->
         <div class="icon-container">
-          <a href="${contextPath}/cart">
+          <a href="${contextPath}/cartlist">
             <img src="${contextPath}/resources/images/system/cart.jpg" class="icon-img" alt="Cart" />
           </a>
         </div>

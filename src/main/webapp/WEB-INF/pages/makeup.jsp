@@ -49,12 +49,15 @@
           <p class="product-price">$35.00</p>
           <button class="add-to-cart-btn">Add to Cart</button>
         </div>
-        <div class="product-card">
-          <img src="${pageContext.request.contextPath}/resources/images/system/fenty beauty lip bomb.jpg" alt="Fenty Beauty Gloss Bomb">
-          <h3>Fenty Beauty Gloss Bomb</h3>
-          <p class="product-price">$50.00</p>
-          <button class="add-to-cart-btn">Add to Cart</button>
-        </div>
+		<div class="product-card">
+		  <a href="${pageContext.request.contextPath}/fentyBeautyGlossBomb.jsp" class="product-link">
+		    <img src="${pageContext.request.contextPath}/resources/images/system/fenty beauty lip pink.jpg" alt="Fenty Beauty Lip Pink">
+		    <h3>Fenty Beauty Gloss Bomb</h3>
+		  </a>
+		  <p class="product-price">$30.00</p>
+		  <button class="add-to-cart-btn">Add to Cart</button>
+		</div>
+
         <div class="product-card">
           <img src="${pageContext.request.contextPath}/resources/images/system/rarebeautymascara.jpg">
           <h3>Rare Beauty Mascara</h3>

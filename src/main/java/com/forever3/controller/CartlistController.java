@@ -10,14 +10,14 @@ import java.io.IOException;
 /**
  * Servlet implementation class ContactUsController
  */
-@WebServlet(asyncSupported = true, urlPatterns = { "/profile" })
-public class ProfileController extends HttpServlet {
+@WebServlet(asyncSupported = true, urlPatterns = { "/cartlist" })
+public class CartlistController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProfileController() {
+    public CartlistController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,7 +27,7 @@ public class ProfileController extends HttpServlet {
 	 */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/pages/profile.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/pages/cartlist.jsp").forward(request, response);
 	}
 
 }

@@ -19,21 +19,21 @@
         <div class="product-card">
           <img src="${pageContext.request.contextPath}/resources/images/system/The Rice toner.jpg" alt="Rice Tonner">
           <h3>Rice Tonner</h3>
-          <p class="product-price">$45.00</p>
+          <p class="product-price">4500</p>
           <button class="add-to-cart-btn">Add to Cart</button>
         </div>
  
         <div class="product-card">
           <img src="${pageContext.request.contextPath}/resources/images/system/mixsoon.jpg" alt="mixoon Hyaluronic Acid Serum">
           <h3>mixoon Hyaluronic Acid Serum</h3>
-          <p class="product-price">$40.00</p>
+          <p class="product-price">4000</p>
           <button class="add-to-cart-btn">Add to Cart</button>
         </div>
  
         <div class="product-card">
           <img src="${pageContext.request.contextPath}/resources/images/system/Beauty of Joseon SPF 50.jpg" alt="Beauty of Joseon Sunscreen">
           <h3>Beauty of Joseon Sunscreen</h3>
-          <p class="product-price">$30.00</p>
+          <p class="product-price">3000</p>
           <button class="add-to-cart-btn">Add to Cart</button>
         </div>
  

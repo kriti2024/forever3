@@ -123,6 +123,12 @@
 .home-page .card:hover {
   transform: scale(1.05);
 }
+.card-link {
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
+}
+
 
 /* Product Card */
 .home-page .product-card {

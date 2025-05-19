@@ -1,41 +1,83 @@
 package com.forever3.service;
 
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import java.io.IOException;
+import com.forever3.config.DbConfig;
+import com.forever3.model.ItemModel;
 
-/**
- * Servlet implementation class ItemService
- */
-@WebServlet(asyncSupported = true, urlPatterns = { "/itemService" })
-public class ItemService extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+public class ItemService {
+
     /**
-     * @see HttpServlet#HttpServlet()
+     * Fetches a single item by its ID
+     * Used when adding to cart or viewing item details
      */
-    public ItemService() {
-        super();
-        // TODO Auto-generated constructor stub
+    public ItemModel getItemById(int itemId) {
+        String sql = "SELECT * FROM item WHERE item_id = ?";
+        ItemModel item = null;
+
+        try (Connection conn = DbConfig.getDbConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setInt(1, itemId);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    item = new ItemModel(
+                            rs.getInt("item_id"),
+                            rs.getString("item_name"),
+                            rs.getString("description"),
+                            rs.getInt("category_id"),
+                            rs.getDouble("item_price"),
+                            rs.getInt("stock_quantity"),
+                            rs.getInt("supplier_id"),
+                            rs.getString("image_url")
+                    );
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            // You can log this or throw a custom exception
+        }
+
+        return item;
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
+    /**
+     * Fetches all items that belong to the given category.
+     * Example: skincare = 2, makeup = 1
+     */
+    public List<ItemModel> getItemsByCategory(int categoryId) {
+        List<ItemModel> items = new ArrayList<>();
+        String sql = "SELECT * FROM item WHERE category_id = ?";
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
+        try (Connection conn = DbConfig.getDbConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
 
+            ps.setInt(1, categoryId);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    ItemModel item = new ItemModel(
+                            rs.getInt("item_id"),
+                            rs.getString("item_name"),
+                            rs.getString("description"),
+                            rs.getInt("category_id"),
+                            rs.getDouble("item_price"),
+                            rs.getInt("stock_quantity"),
+                            rs.getInt("supplier_id"),
+                            rs.getString("image_url")
+                    );
+                    items.add(item);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return items;
+    }
 }

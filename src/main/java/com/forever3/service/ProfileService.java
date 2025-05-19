@@ -1,123 +1,96 @@
 package com.forever3.service;
- 
+
 import java.sql.Connection;
-
 import java.sql.PreparedStatement;
-
 import java.sql.ResultSet;
-
 import java.sql.SQLException;
- 
+
 import com.forever3.config.DbConfig;
-
 import com.forever3.model.UserModel;
- 
+
 public class ProfileService {
- 
-    // Get user profile by userId
 
-    public UserModel getUserProfile(int userId) {
+    private Connection dbConn;
+    private boolean isConnectionError = false;
 
-        String query = "SELECT * FROM user WHERE id = ?";
+    public ProfileService() {
+        try {
+            dbConn = DbConfig.getDbConnection();
+        } catch (SQLException | ClassNotFoundException ex) {
+            ex.printStackTrace();
+            isConnectionError = true;
+        }
+    }
 
-        try (Connection conn = DbConfig.getDbConnection();
+    public UserModel getUserProfile(String username) {
+        if (isConnectionError) {
+            System.out.println("Connection Error!");
+            return null;
+        }
 
-             PreparedStatement stmt = conn.prepareStatement(query)) {
-
-            stmt.setInt(1, userId);
-
+        String query = "SELECT id, first_name, last_name, user_name, email, number, image_url, role FROM customer WHERE user_name = ?";
+        try (PreparedStatement stmt = dbConn.prepareStatement(query)) {
+            stmt.setString(1, username);
             ResultSet result = stmt.executeQuery();
- 
+
             if (result.next()) {
-
-                return mapToUserModel(result);
-
+                UserModel user = new UserModel();
+                user.setId(result.getInt("id"));
+                user.setFirstName(result.getString("first_name"));
+                user.setLastName(result.getString("last_name"));
+                user.setUserName(result.getString("user_name"));
+                user.setEmail(result.getString("email"));
+                user.setNumber(result.getString("number"));
+                user.setImageUrl(result.getString("image_url"));
+                user.setRole(result.getString("role"));
+                return user;
             }
-
-        } catch (SQLException | ClassNotFoundException e) {
-
+        } catch (SQLException e) {
             e.printStackTrace();
-
         }
 
         return null;
-
     }
- 
-    // Update user profile
 
-    public boolean updateUserProfile(UserModel user) {
-
-        String query = user.getImageUrl() != null && !user.getImageUrl().isEmpty()
-
-                ? "UPDATE user SET first_name = ?, last_name = ?, email = ?, number = ?, image_url = ? WHERE id = ?"
-
-                : "UPDATE user SET first_name = ?, last_name = ?, email = ?, number = ? WHERE id = ?";
- 
-        try (Connection conn = DbConfig.getDbConnection();
-
-             PreparedStatement stmt = conn.prepareStatement(query)) {
-
-            stmt.setString(1, user.getFirstName());
-
-            stmt.setString(2, user.getLastName());
-
-            stmt.setString(3, user.getEmail());
-
-            stmt.setString(4, user.getNumber());
- 
-            if (user.getImageUrl() != null && !user.getImageUrl().isEmpty()) {
-
-                stmt.setString(5, user.getImageUrl());
-
-                stmt.setInt(6, user.getId());
-
-            } else {
-
-                stmt.setInt(5, user.getId());
-
-            }
- 
-            int rowsUpdated = stmt.executeUpdate();
-
-            return rowsUpdated > 0;
- 
-        } catch (SQLException | ClassNotFoundException e) {
-
-            e.printStackTrace();
-
+    public boolean updateUserProfile(String oldUsername, UserModel user) {
+        if (isConnectionError) {
+            System.out.println("Connection Error!");
+            return false;
         }
 
-        return false;
+        // Start building SQL and parameters dynamically depending on password presence
+        StringBuilder sql = new StringBuilder("UPDATE customer SET user_name = ?, first_name = ?, last_name = ?, email = ?, number = ?, image_url = ?");
+        boolean updatePassword = user.getPassword() != null && !user.getPassword().trim().isEmpty();
 
-    }
- 
-    private UserModel mapToUserModel(ResultSet resultSet) throws SQLException {
+        if (updatePassword) {
+            sql.append(", password = ?");
+        }
 
-        UserModel user = new UserModel();
+        sql.append(" WHERE user_name = ?");
 
-        user.setId(resultSet.getInt("id"));
+        try (PreparedStatement ps = dbConn.prepareStatement(sql.toString())) {
+            ps.setString(1, user.getUserName());
+            ps.setString(2, user.getFirstName());
+            ps.setString(3, user.getLastName());
+            ps.setString(4, user.getEmail());
+            ps.setString(5, user.getNumber());
+            ps.setString(6, user.getImageUrl());
 
-        user.setFirstName(resultSet.getString("first_name"));
+            int paramIndex = 7;
 
-        user.setLastName(resultSet.getString("last_name"));
+            if (updatePassword) {
+                ps.setString(paramIndex++, user.getPassword());
+            }
 
-        user.setUserName(resultSet.getString("user_name"));
+            ps.setString(paramIndex, oldUsername);
 
-        user.setEmail(resultSet.getString("email"));
+            int rowsAffected = ps.executeUpdate();
+            return rowsAffected > 0;
 
-        user.setNumber(resultSet.getString("number"));
-
-        user.setPassword(resultSet.getString("password"));
-
-        user.setImageUrl(resultSet.getString("image_url"));
-
-        user.setRole(resultSet.getString("role"));
-
-        return user;
-
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
 }
-
- 

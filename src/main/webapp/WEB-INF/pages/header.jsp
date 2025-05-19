@@ -44,7 +44,7 @@
       <div class="search-container">
         <input type="text" class="search-input" placeholder="search" />
         <button class="search-button">
-          <img src="${contextPath}/resources/images/system/search.jpg" class="icon-img" alt="Search" />
+          <img src="${pageContext.request.contextPath}/resources/images/system/search.jpg" class="icon-img" alt="Search" />
         </button>
       </div>
 
@@ -52,12 +52,12 @@
       <div class="auth-button-container">
         <c:choose>
           <c:when test="${not empty currentUser}">
-            <form action="${contextPath}/logout" method="post">
+            <form action="${pageContext.request.contextPath}/logout" method="post">
               <button type="submit" class="auth-button">Logout</button>
             </form>
           </c:when>
           <c:otherwise>
-            <form action="${contextPath}/login" method="get">
+            <form action="${pageContext.request.contextPath}/login" method="get">
               <button type="submit" class="auth-button">Login</button>
             </form>
           </c:otherwise>
@@ -67,14 +67,13 @@
       <c:if test="${not empty currentUser}">
         <!-- Cart -->
         <div class="icon-container">
-          <a href="${contextPath}/cartlist">
-            <img src="${contextPath}/resources/images/system/cart.jpg" class="icon-img" alt="Cart" />
-          </a>
+          <a href="${pageContext.request.contextPath}/cartlist">
+            <img src="${contextPath}/resources/images/system/cart.jpg" class="icon-img" alt="Cart" /></a>
         </div>
 
         <!-- Orderlist -->
         <div class="icon-container">
-          <a href="${contextPath}/orderlist">Orderlist</a>
+          <a href="${pageContext.request.contextPath}/orderlist">Orderlist</a>
         </div>
       </c:if>
 

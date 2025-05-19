@@ -1,81 +1,44 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Skin Care - Forever3</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/skincare.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/skincare.css">
 </head>
 <body>
- 
-   <jsp:include page="header.jsp" />
- 
+  <jsp:include page="header.jsp" />
   <main>
     <section class="product-page">
       <h1>Skin Care Products</h1>
       <div class="product-grid">
-        <div class="product-card">
-          <img src="${pageContext.request.contextPath}/resources/images/system/The Rice toner.jpg" alt="Rice Tonner">
-          <h3>Rice Tonner</h3>
-          <p class="product-price">4500</p>
-          <button class="add-to-cart-btn">Add to Cart</button>
-        </div>
- 
-        <div class="product-card">
-          <img src="${pageContext.request.contextPath}/resources/images/system/mixsoon.jpg" alt="mixoon Hyaluronic Acid Serum">
-          <h3>mixoon Hyaluronic Acid Serum</h3>
-          <p class="product-price">4000</p>
-          <button class="add-to-cart-btn">Add to Cart</button>
-        </div>
- 
-        <div class="product-card">
-          <img src="${pageContext.request.contextPath}/resources/images/system/Beauty of Joseon SPF 50.jpg" alt="Beauty of Joseon Sunscreen">
-          <h3>Beauty of Joseon Sunscreen</h3>
-          <p class="product-price">3000</p>
-          <button class="add-to-cart-btn">Add to Cart</button>
-        </div>
- 
-        <div class="product-card">
-          <img src="${pageContext.request.contextPath}/resources/images/system/Centella Tonning Tonner.jpg" alt="Centella Tonning Tonner">
-          <h3>Centella Tonning Tonner</h3>
-          <p class="product-price">$55.00</p>
-          <button class="add-to-cart-btn">Add to Cart</button>
-        </div>
- 
-        <div class="product-card">
-          <img src="${pageContext.request.contextPath}/resources/images/system/Centella Light Cleansing Oil.jpg" alt="Centella Cleansing Oil">
-          <h3>Centella Cleansing Oil</h3>
-          <p class="product-price">$35.00</p>
-          <button class="add-to-cart-btn">Add to Cart</button>
-        </div>
- 
-        <div class="product-card">
-          <img src="${pageContext.request.contextPath}/resources/images/system/seoul 1988 serum.jpg" alt="Seoul 1988 Serum">
-          <h3>Seoul 1988 Serum</h3>
-          <p class="product-price">$50.00</p>
-          <button class="add-to-cart-btn">Add to Cart</button>
-        </div>
- 
-        <div class="product-card">
-          <img src="${pageContext.request.contextPath}/resources/images/system/Korean Eye Cream.jpg" alt="Revive Eye Serum">
-          <h3>Revive Eye Serum</h3>
-          <p class="product-price">$25.00</p>
-          <button class="add-to-cart-btn">Add to Cart</button>
-        </div>
- 
-        <div class="product-card">
-          <img src="${pageContext.request.contextPath}/resources/images/system/Ordinary Serum.jpg" alt="The Ordinary Hyaluronic Acid">
-          <h3>The Ordinary Hyaluronic Acid</h3>
-          <p class="product-price">$15.00</p>
-          <button class="add-to-cart-btn">Add to Cart</button>
-        </div>
+        <c:forEach var="item" items="${items}">
+          <div class="product-card">
+            <img src="${pageContext.request.contextPath}/resources/images/system/${item.imageUrl}" alt="${item.itemName}" />
+            <h3>${item.itemName}</h3>
+            <p>${item.description}</p>
+            <p class="product-price">Rs ${item.itemPrice}</p>
+
+            <!-- Add to Cart form (No JS used) -->
+            <form method="post" action="${pageContext.request.contextPath}/addToCartController">
+              <input type="hidden" name="itemId" value="${item.itemId}" />
+               <input type="hidden" name="price" value="${item.itemPrice}" />
+				<div class="quantity-selector">
+				  <button type="button" class="qty-btn minus" aria-label="Decrease quantity">−</button>
+				  <input type="number" name="quantity" value="1" min="1" class="qty-input" />
+				  <button type="button" class="qty-btn plus" aria-label="Increase quantity">+</button>
+				</div>
+
+
+              <br/>
+              <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+            </form>
+
+          </div>
+        </c:forEach>
       </div>
     </section>
   </main>
- 
   <jsp:include page="footer.jsp" />
- 
 </body>
 </html>

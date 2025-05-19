@@ -25,69 +25,69 @@ package com.forever3.model;
 	        this.image_url = image_url;
 	    }
 
-	    // Getters and Setters
-	    public int getItem_id() {
-	        return item_id;
-	    }
+		public int getItemId() {
+			return item_id;
+		}
 
-	    public void setItem_id(int item_id) {
-	        this.item_id = item_id;
-	    }
+		public void setItemId(int item_id) {
+			this.item_id = item_id;
+		}
 
-	    public String getItem_name() {
-	        return item_name;
-	    }
+		public String getItemName() {
+			return item_name;
+		}
 
-	    public void setItem_name(String item_name) {
-	        this.item_name = item_name;
-	    }
+		public void setItemName(String item_name) {
+			this.item_name = item_name;
+		}
 
-	    public String getDescription() {
-	        return description;
-	    }
+		public String getDescription() {
+			return description;
+		}
 
-	    public void setDescription(String description) {
-	        this.description = description;
-	    }
+		public void setDescription(String description) {
+			this.description = description;
+		}
 
-	    public int getCategory_id() {
-	        return category_id;
-	    }
+		public int getCategoryId() {
+			return category_id;
+		}
 
-	    public void setCategory_id(int category_id) {
-	        this.category_id = category_id;
-	    }
+		public void setCategoryId(int category_id) {
+			this.category_id = category_id;
+		}
 
-	    public double getItem_price() {
-	        return item_price;
-	    }
+		public double getItemPrice() {
+			return item_price;
+		}
 
-	    public void setItem_price(double item_price) {
-	        this.item_price = item_price;
-	    }
+		public void setItemPrice(double item_price) {
+			this.item_price = item_price;
+		}
 
-	    public int getStock_quantity() {
-	        return stock_quantity;
-	    }
+		public int getStockQuantity() {
+			return stock_quantity;
+		}
 
-	    public void setStock_quantity(int stock_quantity) {
-	        this.stock_quantity = stock_quantity;
-	    }
+		public void setStockQuantity(int stock_quantity) {
+			this.stock_quantity = stock_quantity;
+		}
 
-	    public int getSupplier_id() {
-	        return supplier_id;
-	    }
+		public int getSupplierId() {
+			return supplier_id;
+		}
 
-	    public void setSupplier_id(int supplier_id) {
-	        this.supplier_id = supplier_id;
-	    }
+		public void setSupplierId(int supplier_id) {
+			this.supplier_id = supplier_id;
+		}
 
-	    public String getImage_url() {
-	        return image_url;
-	    }
+		public String getImageUrl() {
+			return image_url;
+		}
 
-	    public void setImage_url(String image_url) {
-	        this.image_url = image_url;
-	    }
+		public void setImageUrl(String image_url) {
+			this.image_url = image_url;
+		}
+	    
 	}
-
+	   

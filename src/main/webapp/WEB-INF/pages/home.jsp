@@ -25,42 +25,31 @@
     </div>
   </section>
  
-  <!-- Categories Section -->
-  <section class="section">
-    <h2 class="section-title">Shop by Category</h2>
-    <div class="card-grid">
+  
+ 
+<!-- Categories Section -->
+<section class="section">
+  <h2 class="section-title">Shop by Category</h2>
+  <div class="card-grid">
+    <!-- Skincare Category -->
+    <a href="${pageContext.request.contextPath}/skincare.jsp" class="card-link">
       <div class="card">
         <img src="${pageContext.request.contextPath}/resources/images/system/homeskin.jpg" alt="Skin Image">
         <h3>Skincare</h3>
       </div>
+    </a>
+
+    <!-- Makeup Category -->
+    <a href="${pageContext.request.contextPath}/makeup.jsp" class="card-link">
       <div class="card">
         <img src="${pageContext.request.contextPath}/resources/images/system/homemakeup.jpg" alt="Makeup Image">
         <h3>Makeup</h3>
       </div>
-    </div>
-  </section>
- 
-  <!-- Best Sellers Section -->
-  <section class="section alt">
-    <h2 class="section-title">Best Sellers</h2>
-    <div class="card-grid">
-      <div class="product-card">
-        <img src="${pageContext.request.contextPath}/resources/images/system/rarebeautyblush.jpg" alt="Rare Beauty Blush">
-        <h4>Rare Beauty Blush</h4>
-        <p>Rs 5000.00</p>
-      </div>
-      <div class="product-card">
-        <img src="${pageContext.request.contextPath}/resources/images/system/diorfoundation.jpg" alt="Dior Radiant Foundation">
-        <h4>Matte Perfection Foundation</h4>
-        <p>Rs 6119.00</p>
-      </div>
-      <div class="product-card">
-        <img src="${pageContext.request.contextPath}/resources/images/system/rarebeautymascara.jpg" alt="Rare Beauty Mascara">
-        <h4>Rare Beauty Mascara</h4>
-        <p>Rs 4487.00</p>
-      </div>
-    </div>
-  </section>
+    </a>
+  </div>
+</section>
+
+
  <!-- Display error message if available -->
 	<c:if test="${not empty error}">
 		<p class="error-message">${error}</p>
